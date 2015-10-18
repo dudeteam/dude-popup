@@ -1,0 +1,51 @@
+<!--
+Copyright (c) 2015 DudeTeam. All rights reserved.
+-->
+<link rel="import" href="../polymer/polymer.html">
+
+<!--
+`dude-popup` is a Polymer element boilerplate for dude library.
+
+@group dude Elements
+@element dude-popup
+@demo demo/index.html
+-->
+<dom-module id="dude-popup">
+    <style>
+        #popup {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 9999;
+        }
+    </style>
+    <template>
+        <div id="popup" hidden>
+            <content></content>
+        </div>
+    </template>
+    <script>
+        Polymer({
+            is: "dude-popup",
+            isOpen: function () {
+                return !this.$.popup.hasAttribute("hidden");
+            },
+            open: function (x, y) {
+                var rect = this.$.popup.getBoundingClientRect();
+                var width = rect.right - rect.left;
+                var height = rect.bottom - rect.top;
+                this.$.popup.removeAttribute("hidden");
+                if (x + width > window.innerWidth) {
+                    this.$.popup.style.left = window.innerWidth - width + "px";
+                } else {
+                    this.$.popup.style.left = x + "px";
+                }
+                if (y + height > window.innerHeight) {
+                    this.$.popup.style.top = window.innerHeight - height + "px";
+                } else {
+                    this.$.popup.style.top = y + "px";
+                }
+            }
+        });
+    </script>
+</dom-module>

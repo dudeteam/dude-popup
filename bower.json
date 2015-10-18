@@ -1,0 +1,29 @@
+{
+  "name": "dude-popup",
+  "version": "0.0.1",
+  "authors": [
+    "Jeremie Taboada <taboada.jeremie@gmail.com>"
+  ],
+  "description": "An element providing a solution to no problem in particular.",
+  "keywords": [
+    "dude",
+    "state"
+  ],
+  "main": "dude-popup.html",
+  "license": "MIT",
+  "homepage": "https://github.com/dudeteam/dude-popup/",
+  "ignore": [
+    "/.*",
+    "/test/",
+    "/demo/"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.0.0"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+    "web-component-tester": "*",
+    "dude-hierarchy": "~0.0.8",
+    "font-awesome": "~4.4.0"
+  }
+}
