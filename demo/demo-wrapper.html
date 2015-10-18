@@ -1,21 +1,24 @@
 <link rel="import" href="../../polymer/polymer.html">
 <link rel="import" href="../../font-awesome/css/font-awesome.css">
+<link rel="import" href="../../iron-a11y-keys-behavior/iron-a11y-keys-behavior.html">
 <link rel="import" href="../../dude-hierarchy/dude-hierarchy.html">
 <dom-module id="demo-wrapper">
     <style>
         dude-hierarchy {
             width: 300px;
+            max-height: 400px;
             background: #333333;
         }
     </style>
     <template>
         <dude-popup id="popup">
-            <dude-hierarchy items="{{_items}}"></dude-hierarchy>
+            <dude-hierarchy id="hierarchy" items="{{_items}}"></dude-hierarchy>
         </dude-popup>
     </template>
     <script>
         Polymer({
             is: "demo-wrapper",
+            behaviors: [Polymer.IronA11yKeysBehavior],
             ready: function () {
                 this.set("_items", [
                     {item: {name: "item1", data: "item1"}},
@@ -41,11 +44,41 @@
                         {item: {name: "item2", data: "item2"}}
                     ]}}
                 ]);
+                this.keyEventTarget = document.body;
+                this.addOwnKeyBinding("up", "_up");
+                this.addOwnKeyBinding("down", "_down");
+                this.addOwnKeyBinding("right", "_right");
+                this.addOwnKeyBinding("left", "_left");
+                this.addOwnKeyBinding("enter", "_submit");
+                this.addOwnKeyBinding("esc", "_closePopup");
                 window.addEventListener("click", function (e) {
-                    if (!this.$.popup.isOpen()) {
-                        this.$.popup.open(e.x, e.y);
-                    }
+                    this.$.popup.open(e.x, e.y);
+                    this.$.hierarchy.focus();
                 }.bind(this));
+            },
+            _up: function () {
+                this.$.hierarchy.moveUp();
+            },
+
+            _down: function () {
+                this.$.hierarchy.moveDown();
+            },
+
+            _right: function () {
+                this.$.hierarchy.moveRight();
+            },
+
+            _left: function () {
+                this.$.hierarchy.moveLeft();
+            },
+
+            _submit: function () {
+                this.$.hierarchy.submit();
+                this.$.popup.close();
+            },
+
+            _closePopup: function () {
+                this.$.popup.close();
             }
         });
     </script>

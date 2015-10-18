@@ -13,6 +13,7 @@ Copyright (c) 2015 DudeTeam. All rights reserved.
 <dom-module id="dude-popup">
     <style>
         #popup {
+            display: block;
             position: absolute;
             top: 0;
             left: 0;
@@ -30,21 +31,35 @@ Copyright (c) 2015 DudeTeam. All rights reserved.
             isOpen: function () {
                 return !this.$.popup.hasAttribute("hidden");
             },
+            close: function () {
+                this.$.popup.setAttribute("hidden", "");
+            },
             open: function (x, y) {
+                if (this.isOpen()) {
+                    if (this._outOfRect(x, y)) {
+                        this.close();
+                    }
+                    return;
+                }
+                this.$.popup.removeAttribute("hidden");
                 var rect = this.$.popup.getBoundingClientRect();
                 var width = rect.right - rect.left;
                 var height = rect.bottom - rect.top;
-                this.$.popup.removeAttribute("hidden");
                 if (x + width > window.innerWidth) {
-                    this.$.popup.style.left = window.innerWidth - width + "px";
+                    this.$.popup.style.left = x - width + "px";
                 } else {
                     this.$.popup.style.left = x + "px";
                 }
                 if (y + height > window.innerHeight) {
-                    this.$.popup.style.top = window.innerHeight - height + "px";
+                    this.$.popup.style.top = y - height + "px";
                 } else {
                     this.$.popup.style.top = y + "px";
                 }
+            },
+            _outOfRect: function (x, y) {
+                this.$.popup.setAttribute("hidden", "");
+                var rect = this.$.popup.getBoundingClientRect();
+                return x < rect.left || x > rect.right || y < rect.top || y > rect.bottom;
             }
         });
     </script>
