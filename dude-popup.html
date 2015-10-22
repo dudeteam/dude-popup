@@ -28,14 +28,9 @@ Copyright (c) 2015 DudeTeam. All rights reserved.
     <script>
         Polymer({
             is: "dude-popup",
-            isOpen: function () {
-                return !this.$.popup.hasAttribute("hidden");
-            },
-            close: function () {
-                this.$.popup.setAttribute("hidden", "");
-            },
+
             open: function (x, y) {
-                if (this.isOpen()) {
+                if (this.isOpened()) {
                     if (this._outOfRect(x, y)) {
                         this.close();
                     }
@@ -56,8 +51,16 @@ Copyright (c) 2015 DudeTeam. All rights reserved.
                     this.$.popup.style.top = y + "px";
                 }
             },
-            _outOfRect: function (x, y) {
+
+            close: function () {
                 this.$.popup.setAttribute("hidden", "");
+            },
+
+            isOpened: function () {
+                return !this.$.popup.hasAttribute("hidden");
+            },
+
+            _outOfRect: function (x, y) {
                 var rect = this.$.popup.getBoundingClientRect();
                 return x < rect.left || x > rect.right || y < rect.top || y > rect.bottom;
             }
