@@ -2,9 +2,10 @@
   "name": "dude-popup",
   "version": "0.0.1",
   "authors": [
-    "Jeremie Taboada <taboada.jeremie@gmail.com>"
+    "Jeremie Taboada <taboada.jeremie@gmail.com>",
+    "Jonathan Picques <jonathan.picques@gmail.com>"
   ],
-  "description": "An element providing a solution to no problem in particular.",
+  "description": "Polymer element to create a popup which can be canceled by pressing escape.",
   "keywords": [
     "dude",
     "state"
