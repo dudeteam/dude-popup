@@ -12,22 +12,24 @@ Copyright (c) 2015 DudeTeam. All rights reserved.
 -->
 <dom-module id="dude-popup">
     <style>
-        #popup {
-            display: block;
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 9999;
-        }
     </style>
     <template>
-        <div id="popup" hidden>
-            <content></content>
-        </div>
+
     </template>
     <script>
         Polymer({
             is: "dude-popup",
+
+            ready: function () {
+                this._popupElement = document.createElement("div");
+                this._popupElement.id = "popup";
+                this._popupElement.style.zIndex = 9999;
+                this._popupElement.style.display = "block";
+                this._popupElement.style.position = "absolute";
+                this._popupElement.setAttribute("hidden", "");
+                this._popupElement.appendChild(Polymer.dom(this).querySelector("*"));
+                document.body.appendChild(this._popupElement);
+            },
 
             open: function (x, y) {
                 if (this.isOpened()) {
@@ -36,32 +38,32 @@ Copyright (c) 2015 DudeTeam. All rights reserved.
                     }
                     return;
                 }
-                this.$.popup.removeAttribute("hidden");
-                var rect = this.$.popup.getBoundingClientRect();
+                this._popupElement.removeAttribute("hidden");
+                var rect = this._popupElement.getBoundingClientRect();
                 var width = rect.right - rect.left;
                 var height = rect.bottom - rect.top;
                 if (x + width > window.innerWidth) {
-                    this.$.popup.style.left = x - width + "px";
+                    this._popupElement.style.left = x - width + "px";
                 } else {
-                    this.$.popup.style.left = x + "px";
+                    this._popupElement.style.left = x + "px";
                 }
                 if (y + height > window.innerHeight) {
-                    this.$.popup.style.top = y - height + "px";
+                    this._popupElement.style.top = y - height + "px";
                 } else {
-                    this.$.popup.style.top = y + "px";
+                    this._popupElement.style.top = y + "px";
                 }
             },
 
             close: function () {
-                this.$.popup.setAttribute("hidden", "");
+                this._popupElement.setAttribute("hidden", "");
             },
 
             isOpened: function () {
-                return !this.$.popup.hasAttribute("hidden");
+                return !this._popupElement.hasAttribute("hidden");
             },
 
             _outOfRect: function (x, y) {
-                var rect = this.$.popup.getBoundingClientRect();
+                var rect = this._popupElement.getBoundingClientRect();
                 return x < rect.left || x > rect.right || y < rect.top || y > rect.bottom;
             }
         });
