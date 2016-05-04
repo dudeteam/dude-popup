@@ -27,6 +27,12 @@ Copyright (c) 2015 DudeTeam. All rights reserved.
         Polymer({
             is: "dude-popup",
 
+            /**
+             * Opens the popup to the given position
+             * The popup will try to fit the window
+             * @param {Number} x
+             * @param {Number} y
+             */
             open: function (x, y) {
                 if (this.isOpened()) {
                     if (this._outOfRect(x, y)) {
@@ -38,26 +44,43 @@ Copyright (c) 2015 DudeTeam. All rights reserved.
                 var rect = this.$.popup.getBoundingClientRect();
                 var width = rect.right - rect.left;
                 var height = rect.bottom - rect.top;
+                var left = x;
+                var top = y;
                 if (x + width > window.innerWidth) {
-                    this.$.popup.style.left = x - width + "px";
-                } else {
-                    this.$.popup.style.left = x + "px";
+                    left = x - width;
                 }
                 if (y + height > window.innerHeight) {
-                    this.$.popup.style.top = y - height + "px";
-                } else {
-                    this.$.popup.style.top = y + "px";
+                    top = y - height;
                 }
+                if (top < 0) {
+                    top = 0;
+                }
+                this.$.popup.style.left = left + "px";
+                this.$.popup.style.top = top + "px";
             },
 
+            /**
+             * Closes the popup
+             */
             close: function () {
                 this.$.popup.setAttribute("hidden", "");
             },
 
+            /**
+             * Checks whether the popup is opened
+             * @returns {Boolean}
+             */
             isOpened: function () {
                 return !this.$.popup.hasAttribute("hidden");
             },
 
+            /**
+             * Returns whether the given point is outside the popup
+             * @param {Number} x
+             * @param {Number} y
+             * @returns {Boolean}
+             * @private
+             */
             _outOfRect: function (x, y) {
                 var rect = this.$.popup.getBoundingClientRect();
                 return x < rect.left || x > rect.right || y < rect.top || y > rect.bottom;
