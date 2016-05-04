@@ -1,28 +1,28 @@
 {
-  "name": "dude-popup",
-  "version": "0.0.4",
-  "authors": [
-    "Jeremie Taboada <taboada.jeremie@gmail.com>",
-    "Jonathan Picques <jonathan.picques@gmail.com>"
-  ],
-  "description": "Polymer element to create a popup which can be canceled by pressing escape.",
-  "keywords": [
-    "dude",
-    "popup"
-  ],
-  "main": "dude-popup.html",
-  "license": "MIT",
-  "homepage": "https://github.com/dudeteam/dude-popup/",
-  "ignore": [
-    "/.*",
-    "/test/",
-    "/demo/"
-  ],
-  "dependencies": {
-    "polymer": "^1.4.0",
-  },
-  "devDependencies": {
-    "iron-component-page": "PolymerElements/iron-component-page#^1.1.5",
-    "web-component-tester": "^4.2.2"
-  }
+    "name": "dude-popup",
+    "version": "0.0.5",
+    "authors": [
+        "Jeremie Taboada <taboada.jeremie@gmail.com>",
+        "Jonathan Picques <jonathan.picques@gmail.com>"
+    ],
+    "description": "Polymer element to create a popup which can be canceled by pressing escape.",
+    "keywords": [
+        "dude",
+        "popup"
+    ],
+    "main": "dude-popup.html",
+    "license": "MIT",
+    "homepage": "https://github.com/dudeteam/dude-popup/",
+    "ignore": [
+        "/.*",
+        "/test/",
+        "/demo/"
+    ],
+    "dependencies": {
+        "polymer": "^1.4.0"
+    },
+    "devDependencies": {
+        "iron-component-page": "PolymerElements/iron-component-page#^1.1.5",
+        "web-component-tester": "^4.2.2"
+    }
 }
