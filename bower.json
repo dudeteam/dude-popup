@@ -1,6 +1,6 @@
 {
   "name": "dude-popup",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "authors": [
     "Jeremie Taboada <taboada.jeremie@gmail.com>",
     "Jonathan Picques <jonathan.picques@gmail.com>"
@@ -8,7 +8,7 @@
   "description": "Polymer element to create a popup which can be canceled by pressing escape.",
   "keywords": [
     "dude",
-    "state"
+    "popup"
   ],
   "main": "dude-popup.html",
   "license": "MIT",
@@ -19,12 +19,10 @@
     "/demo/"
   ],
   "dependencies": {
-    "polymer": "Polymer/polymer#^1.0.0"
+    "polymer": "^1.4.0",
   },
   "devDependencies": {
-    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
-    "web-component-tester": "*",
-    "dude-hierarchy": "~0.0.8",
-    "font-awesome": "~4.4.0"
+    "iron-component-page": "PolymerElements/iron-component-page#^1.1.5",
+    "web-component-tester": "^4.2.2"
   }
 }
